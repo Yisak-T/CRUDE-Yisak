@@ -65,8 +65,8 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
-    if (!validator.isEmail(email) || !validator.isLength(password, { min: 6 })) {
-        return res.status(400).json({ success: false, message: "Invalid email or password" });
+    if (!name || !email || !password) {
+        return res.status(400).json({ success: false, message: "All fields (name, email, password) are required." });
     }
     bcrypt.hash(password, 10, (err, hash) => {
         const sql = "INSERT INTO student (Name, Email, Password, Role) VALUES (?, ?, ?, 'viewer')";
