@@ -48,13 +48,15 @@ app.post('/login', (req, res) => {
             if (err) return res.status(500).json({ success: false, message: "Error checking credentials" });
             if (result.length > 0) {
                 const student = result[0];
-                bcrypt.compare(password, student.Password, (err, result) => {
-                    if (result) {
-                        const token = jwt.sign({ email: student.Email, role: "viewer" }, 'your_jwt_secret');
-                        return res.json({ success: true, token, role: "viewer", studentId: student.ID });
-                    } else {
+                if (!student.Password) {
+                    return res.status(401).json({ success: false, message: "Student password is not set" });
+                }
+                bcrypt.compare(password, student.Password, (err, match) => {
+                    if (err || !match) {
                         return res.status(401).json({ success: false, message: "Invalid credentials" });
                     }
+                    const token = jwt.sign({ email: student.Email, role: "viewer" }, 'your_jwt_secret');
+                    return res.json({ success: true, token, role: "viewer", studentId: student.ID });
                 });
             } else {
                 return res.status(401).json({ success: false, message: "Invalid credentials" });
