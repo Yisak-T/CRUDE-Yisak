@@ -1,13 +1,18 @@
 # Student Management CRUD System
 
 This project is a functional student management application built using React for the frontend, Node.js with Express for the backend, and MySQL for data storage. It supports registration, login, role-based access, student management (create, read, update, delete), and password recovery.
+Repository: https://github.com/Yisak-T/CRUDE-Yisak.git
 To watch this project runing watch video attached on youtube: https://youtu.be/7VBskFDkiVQ.
 
 ---
 
 ## How to Set It Up
 
-## 1. Backend Setup
+## 1.Copy the Repository
+From: https://github.com/Yisak-T/CRUDE-Yisak.git
+
+
+## 2. Backend Setup
 
 #### Prerequisites
 - Node.js installed
