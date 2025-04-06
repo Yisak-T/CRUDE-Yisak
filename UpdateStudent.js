@@ -14,7 +14,7 @@ function UpdateStudent() {
       .then(res => {
         setName(res.data.Name);
         setEmail(res.data.Email);
-        setPassword(res.data.Password);
+        setPassword('');;
       })
       .catch(err => console.log(err));
   }, [id]);
@@ -56,7 +56,7 @@ function UpdateStudent() {
           <div className='mb-2'>
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               className="form-control"
