@@ -74,9 +74,30 @@ app.post('/register', (req, res) => {
         db.query(sql, values, (err, data) => {
             if (err) {
                 console.log("Insert error:", err);
-                return res.json("Error");
+                return res.status(500).json({ success: false, message: "Database error", error: err });
             }
             return res.json(data);
+        });
+    });
+});
+
+app.post('/create', (req, res) => {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        return res.status(400).json({ success: false, message: "All fields are required" });
+    }
+
+    bcrypt.hash(password, 10, (err, hash) => {
+        if (err) return res.status(500).json({ success: false, message: "Password encryption failed" });
+
+        const sql = "INSERT INTO student (Name, Email, Password, Role) VALUES (?, ?, ?, 'viewer')";
+        const values = [name, email, hash];
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.log("Create error:", err);
+                return res.status(500).json({ success: false, message: "Failed to add student", error: err });
+            }
+            return res.json({ success: true, message: "Student added successfully" });
         });
     });
 });
