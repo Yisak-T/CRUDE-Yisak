@@ -68,7 +68,7 @@ function Student() {
                                 <tr key={i}>
                                     <td>{data.Name}</td>
                                     <td>{data.Email}</td>
-                                    {role === 'admin' && <td>{data.Password}</td>}
+                                    {role === 'admin' && <td>••••••••</td>}
                                     <td>
                                         {role === 'admin' ? (
                                           <>
