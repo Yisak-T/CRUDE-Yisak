@@ -1,6 +1,7 @@
 # Student Management CRUD System
 
 This project is a functional student management application built using React for the frontend, Node.js with Express for the backend, and MySQL for data storage. It supports registration, login, role-based access, student management (create, read, update, delete), and password recovery.
+To watch this project runing watch video attached on youtube: https://youtu.be/7VBskFDkiVQ.
 
 ---
 
